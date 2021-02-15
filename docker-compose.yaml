@@ -1,0 +1,21 @@
+version: "3.9"
+
+services:
+  wordpress:
+    image: wordpress:latest
+    environment:
+      - WORDPRESS_DB_PASSWORD=<password>  # Set here your database password
+      - WORDPRESS_DB_HOST=wordpressdb:3306
+      - WORDPRESS_DB_NAME=wordpress
+    volumes:
+      - ./wordpress:/var/www/html
+    ports:
+      - "80:80"
+
+  wordpressdb:
+    image: mysql:latest
+    environment: 
+      - MYSQL_ROOT_PASSWORD=<password>  # Set here your database password
+      - MYSQL_DATABASE=wordpress
+    volumes: 
+      - ./database:/var/lib/mysql
